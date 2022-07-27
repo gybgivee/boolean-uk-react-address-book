@@ -6,6 +6,7 @@ import ContactsView from "./components/ContactsView"
 import "./styles/styles.css"
 
 export default function App() {
+
   const [contacts, setContacts] = useState([])
 
   useEffect(() => {
@@ -17,13 +18,14 @@ export default function App() {
       })
       .catch((error) => console.log(error));
   }, [])
-
+  useEffect(()=>setContacts(contacts),[contacts]);
   return (
     <>
       <nav>
         <h2>Menu</h2>
         <ul>
         <li><Link to="/">Contacts List</Link></li>
+      
         <li><Link to="/addContact">Add New Contact</Link></li>
         
         </ul>
@@ -33,6 +35,7 @@ export default function App() {
           <Route path="/" element={<ContactsList contacts={contacts} />} />
           <Route path="/contact/:id" element={<ContactsView />} />
           <Route path="/addContact" element={<ContactsAdd contacts={contacts} setContacts={setContacts}/>}></Route>
+          <Route path="/editContact/:id" element={<ContactsAdd contacts={contacts} setContacts={setContacts}/>}></Route>
         </Routes>
       </main>
     </>

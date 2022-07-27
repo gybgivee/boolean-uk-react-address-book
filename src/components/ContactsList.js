@@ -16,10 +16,10 @@ function ContactsList(props) {
           const { firstName, lastName } = contact
           return (
             <div className="contact-container">
-              <Link to={`/contact/${contact.id}`} state={{ contact }}>
+              <Link key={`contact-${index}`} to={`/contact/${contact.id}`} state={{ contact }}>
                 {firstName} {lastName} 
               </Link>
-              <Link to={`/edit/${contact.id}`} state={{ contact }}>
+              <Link  key={`edit-${index}`}to={`/editContact/${contact.id}`} state={{ contact }}>
                 <button>Edit</button><br/>
               </Link>
             </div>
