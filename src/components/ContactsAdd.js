@@ -1,38 +1,61 @@
-import { useState } from "react"
-import { useNavigate } from "react-router-dom";
+import { useCallback, useEffect, useState } from "react"
+import { Link, useNavigate } from "react-router-dom";
+import ContactForm from "./ContactForm.component";
 
 function ContactsAdd(props) {
 
-  // setContacts and contacts must be passed as props
-  // to this component so new contacts can be added to the
-  // state
+  const initialContact =
+  {
+    firstName: null,
+    lastName: null,
+    street: null,
+    city: null
+  }
   const { setContacts, contacts } = props
+  const [contact, setContact] = useState(initialContact);
+  const navigate = useNavigate();
 
-  //TODO: Implement controlled form
-  //send POST to json server on form submit
+  const addContact = async (contact) => {
+    const rawResponse = await fetch("http://localhost:4000/contacts",
+      {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(contact)
+      });
+    const content = await rawResponse.json();
+   
+  }
+  const updateData = ()=>{
+
+    setContacts([...contacts,contact])
+    addContact(contact);
+  }
+  const setValue = (e) => {
+    const key = e.target.id;
+    const value = e.target.value;
+   setContact({ [key]: value})
+}
+
+ 
+  const handleSubmit = (e) => {
+    (async () => {
+      e.preventDefault();
+      await updateData();
+      navigate("/");
+    })();
+
+  }
+
 
   return (
-    <form className="form-stack contact-form">
-      <h2>Create Contact</h2>
 
-      <label htmlFor="firstName">First Name</label>
-      <input id="firstName" name="firstName" type="text" required />
-
-      <label htmlFor="lastName">Last Name:</label>
-      <input id="lastName" name="lastName" type="text" required/>
-
-      <label htmlFor="street">Street:</label>
-      <input id="street" name="street" type="text" required/>
-
-      <label htmlFor="city">City:</label>
-      <input id="city" name="city" type="text" required/>
-
-      <div className="actions-section">
-        <button className="button blue" type="submit">
-          Create
-        </button>
-      </div>
+    <form className="form-stack contact-form" onSubmit={handleSubmit}>
+      <ContactForm contact={contact} setValue={setValue} />
     </form>
+
   )
 }
 

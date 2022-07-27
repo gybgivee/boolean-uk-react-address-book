@@ -151,3 +151,10 @@ h2 {
 .address-card h2 {
   font-size: 1.15rem;
 }
+.contact-container{
+  display: flex;
+  gap: 1rem;
+}
+.contact-container button{
+font-size: .8rem;
+}
