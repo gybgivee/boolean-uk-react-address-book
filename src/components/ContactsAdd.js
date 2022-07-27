@@ -11,7 +11,7 @@ function ContactsAdd(props) {
     street: null,
     city: null
   }
-  const { setContacts, contacts } = props
+  const {contacts, setContacts} = props
   const [contact, setContact] = useState(initialContact);
   useEffect(() => {
     if (location.state) {
@@ -73,19 +73,12 @@ function ContactsAdd(props) {
     }
 
   }
-  /*  setContact({ [key]: value })
-  .sort(sortFunctions[sortType])
-  const sortFunctions = {
-    [SortTypes.price] : (a, b) => b.price - a.price,
-    [SortTypes.name] : (a, b) => a.name.localeCompare(b.name)
-}     */
   const setValue = (e) => {
     const key = e.target.id;
     const value = e.target.value;
     console.log('vaue',value);
     initialContact[key] = value;
   }
-
 
   const handleSubmit = (e) => {
     (async () => {

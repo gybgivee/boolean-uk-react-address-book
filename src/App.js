@@ -18,7 +18,7 @@ export default function App() {
       })
       .catch((error) => console.log(error));
   }, [])
-  useEffect(()=>setContacts(contacts),[contacts]);
+
   return (
     <>
       <nav>
