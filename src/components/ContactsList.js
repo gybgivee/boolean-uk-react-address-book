@@ -15,12 +15,15 @@ function ContactsList(props) {
         {contacts.map((contact, index) => {
           const { firstName, lastName } = contact
           return (
-            <div className="contact-container">
-              <Link key={`contact-${index}`} to={`/contact/${contact.id}`} state={{ contact }}>
+            <div key={index} className="contact-container">
+              <Link to={`/contact/${contact.id}`} state={{ contact }}>
                 {firstName} {lastName} 
               </Link>
-              <Link  key={`edit-${index}`}to={`/editContact/${contact.id}`} state={{ contact }}>
+              <Link to={`/editContact/${contact.id}`} state={{ contact }}>
                 <button>Edit</button><br/>
+              </Link>
+              <Link to={`/deleteContact/${contact.id}`} state={{ contact }}>
+                <li>Delete</li>
               </Link>
             </div>
           )
