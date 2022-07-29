@@ -12,12 +12,12 @@ function ContactDelete(props) {
     if (location.state) {
         const { contact } = location.state;
         setContact(contact);
-        deleteContact(contact)
+        deleteContact()
       } 
      
    }
    ,[])
-    const deleteContact = async (contact) => {
+    const deleteContact = async () => {
         try{
             await fetch(`http://localhost:4000/contacts/${id}`,
             {
