@@ -6,6 +6,7 @@ import ContactsView from "./components/ContactsView"
 import "./styles/styles.css"
 import ContactsEdit from "./components/EditContact.component"
 import ContactDelete from "./components/DeleteContact.component"
+import Meeting from "./components/Meeting.component"
 
 export default function App() {
 
@@ -36,6 +37,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<ContactsList contacts={contacts} />} />
           <Route path="/contact/:id" element={<ContactsView />} />
+          <Route path="/contact/:id/meetings/*" element={<Meeting contacts={contacts} setContacts={setContacts}/>} />
           <Route path="/addContact" element={<ContactsAdd contacts={contacts} setContacts={setContacts}/>}></Route>
           <Route path="/editContact/:id" element={<ContactsEdit contacts={contacts} setContacts={setContacts}/>}></Route>
           <Route path="/deleteContact/:id" element={<ContactDelete contacts={contacts} setContacts={setContacts}/>}></Route>

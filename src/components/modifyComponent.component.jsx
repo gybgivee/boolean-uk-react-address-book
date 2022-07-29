@@ -15,8 +15,9 @@ function ContactsModify(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    updateData();
-    navigate("/", contacts = { contacts });
+    updateData(contact,contacts);
+    console.log('contacts',contacts);
+    navigate("/",{ contacts });
   }
 
 

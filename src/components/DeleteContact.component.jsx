@@ -24,7 +24,8 @@ function ContactDelete(props) {
                 method: 'DELETE',
             });
             const updateContacts = contacts.filter(element => {
-               if(element.id != id)return element;
+               //if(element.id != id)return element;
+               return element.id != id;
             })
             console.log('updateContacts', updateContacts);
             setContacts(updateContacts);

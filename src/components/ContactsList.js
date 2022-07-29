@@ -19,6 +19,9 @@ function ContactsList(props) {
               <Link to={`/contact/${contact.id}`} state={{ contact }}>
                 {firstName} {lastName} 
               </Link>
+              <Link to={`/contact/${contact.id}/meetings`} state={{ contact }}>
+              <li>meetings</li>
+              </Link>
               <Link to={`/editContact/${contact.id}`} state={{ contact }}>
                 <button>Edit</button><br/>
               </Link>
