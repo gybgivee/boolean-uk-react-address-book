@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react"
-import { useLocation, useParams } from "react-router-dom";
+import { useCallback, useEffect, useState } from "react"
+import { Link, useLocation, useParams, useNavigate } from "react-router-dom";
+import ContactForm from "./ContactForm.component";
 import ContactsModify from "./ModifyComponent.component";
 
 function ContactsEdit(props) {
-
-
   const { contacts, setContacts } = props
   const [contact, setContact] = useState("");
 
   const location = useLocation();
   const { id } = useParams();
+ 
   useEffect(() => {
     if (location.state) {
       const { contact } = location.state;
@@ -29,16 +29,16 @@ function ContactsEdit(props) {
             },
             body: JSON.stringify(contact)
           });
-  
+          const updateContacts = contacts.map(element => {
+            return element.id == id ? contact : element;
+          })
+          console.log('updateContacts Edit', updateContacts);
+          setContacts(updateContacts);
       } catch (err) {
         console.log(err);
       }
     }
-    const updateContacts = contacts.map(element => {
-      return element.id == id ? contact : element;
-    })
-    console.log('updateContacts Edit', updateContacts);
-    setContacts(updateContacts);
+  
     editContact(contact)
 
   }

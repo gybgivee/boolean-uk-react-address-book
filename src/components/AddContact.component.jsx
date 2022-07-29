@@ -12,7 +12,7 @@ function ContactsAdd(props) {
   const { contacts, setContacts } = props
   const [contact, setContact] = useState(initialContact);
  
-  const updateData = () => {
+  const updateData = (contact,contacts) => {
  
     const addContact = async (contact,contacts) => {
     
